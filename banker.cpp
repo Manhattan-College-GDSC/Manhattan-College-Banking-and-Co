@@ -11,6 +11,8 @@ std::string lastname; //lastname of userdouble depo()
 
 
 
+
+
 double savingsbalance; //savings balance
 
 //savings
