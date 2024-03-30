@@ -4,107 +4,219 @@ using namespace std;
 #include <cstdlib> 
 #include <time.h>
 
-double initbalance; //inital balance for savings/checking
+//global variables
+double initbalance; //initial balance for checking
 double balance; //checking balance
-std::string firstname; //firstname of user
-std::string lastname; //lastname of userdouble depo()
-
-
-
-
-
+string firstname; //firstname of user
+string lastname; //lastname of user
 double savingsbalance; //savings balance
 
+
 //savings
-void savings()
-{
-  std::string transfer;
-	double transferamount;
-
+void savings(){ 
+  //ask users name
+  cout << "Enter your first name: ";
+  cin >> firstname;
+  //last name
+  cout << "Enter your Last name: ";
+  cin >> lastname;
+  //initial balance
+  cout << "Please enter the balance of your saving account: ";
+  cin >> savingsbalance;
+  //display name/account type/current balance for said accoutn
+  cout << firstname << " " << lastname << " " << "current balance is: " << savingsbalance;
 }
-
-//checking account information
+//checking
 void checking()
 {
-std::string transfer;
-	double transferamount;
+//ask users name
+  //last name
+  //inital balance
+  //display name/account type/current balance for said accoutn
+  cout << "Enter your first name: ";
+  cin >> firstname;;
+  cout << "Enter your last name: ";
+  cin >> lastname;
 
-
-  
+  cout << firstname << " " << lastname << " " << "current balance is: " << balance << "initial balance" << initbalance;
 }
-//deposit
-double depo()
+
+// deposit
+void depo()
 {
+string user_choice;
+  int user_choice2;
+  double deposit_amount;
 
-double depositchoice;
-	std::string input;
-	std::string accountchoice;
+    while (true) {
+        cout << "Would you like to make a deposit? [yes/no]: ";
+        cin >> user_choice;
 
-  
-  return balance;
+        if ((user_choice != "Yes") && (user_choice != "yes")) {
+            break;
+        }
+
+        cout << "1) Checkings" << endl;
+        cout << "2) Savings" << endl;
+        cout << "Enter: ";
+        cin >> user_choice2;
+
+
+        switch (user_choice2) {
+            case 1: {
+                cout << "Enter an amount: ";
+                cin >> deposit_amount;
+                balance += deposit_amount;
+                cout << "Checkings Balance: " << balance << endl;
+                break;
+            }
+            case 2: {
+                cout << "Enter an amount: ";
+                cin >> deposit_amount;
+                savingsbalance += deposit_amount;
+                cout << "Savings Balance: " << savingsbalance << endl;
+                break;
+            }
+        }
+    }
+    cout << "Would you like to check your balance? [yes/no] ";
+    cin >> user_choice;
+
+    cout << "1) Checkings" << endl;
+    cout << "2) Savings" << endl;
+    cout << "Enter: ";
+    cin >> user_choice2;
+
+    if (user_choice2 == 1) {
+        cout << "Checkings Balance: " << balance << endl;
+    }
+    else if (user_choice2 == 2) {
+        cout << "Savings Balance: " << savingsbalance << endl;
+    }
 }
 
-//withdrawals
-double withdraw()
+void withdraw()
 {
-double withdrawalchoice;
-	std::string withdrawchoice;
-	std::string input;
+//withdrawal for either check or savings
+  //repeat this withdrawal until user says no
+  //show current balance once ended
 
-  
+  //create a loop that will repeat until the user says no
+  //var--->
+  string user_choice;
+  string user_balance;
+  double widthdraw_amount;
+  double current_balance;
+  double current_savings;
+  cout << "Would you like to make a withdrawl?";
+  cin >> user_choice;
+  cout << "Which account do you want to proceed with, balance or savings?";
+  cin >> user_balance;
 
-return balance;
+  if(user_balance=="balance" || "Balance")
+  {
+    while(user_choice=="yes" || user_choice== "Yes")
+      {
+         cout << "Enter the amount: ";
+         cin >> widthdraw_amount;
+         current_balance = balance - widthdraw_amount;
+         cout << "Do you want to make another withdrawl" << endl;
+         cin >> user_choice;
+         if(user_choice == "no" || user_choice == "No")
+         {
+           break;
+         }
+      }
+
+  }
+
+  if(user_balance=="savings" || "Savings")
+  {
+    while(user_choice=="yes" || user_choice== "Yes")
+      {
+        cout << "Enter the amount: ";
+        cin >> widthdraw_amount;
+        current_savings= savingsbalance - widthdraw_amount;
+        cout << "Do you wish to make another withdrawl?";
+        cin >> user_choice;
+        if(user_choice == "no" || user_choice == "No")
+         {
+           break;
+        }
+      }
+  }
+
+  cout << "The total checking balance in your account is" << current_balance << "and total savings " << current_savings;
+
 }
 
+//withdrawal
 
-//balance inquiry
-void display()
-{
-int input;
-
-  
-}
-
-
-//transferring money between accounts
 void transfer()
 {
+  double transfr;
+  string ask;
+  //Asking which account you want to transfer money from
+  cout<< "Enter 'checking' or 'saving': ";
+  cin >> ask;
+  cout << "Type your Transfer amount: ";
+  cin >> transfr;
+  if (ask == "checking"){
+      balance = balance - transfr;
+      savingsbalance = savingsbalance + transfr;
+    cout<< "Checking amount: " <<balance <<endl;
 
-	double transferamount;
-
-	int input;
-	double checkingproblem;
-	double savingsproblem;
-
-  
+    cout<< "Saving amount: " << balance <<endl;
+  }else if(ask == "saving"){
+      savingsbalance = savingsbalance - transfr;
+     // balance = balance - transfr;
+    cout<< "Saving amount: "<< savingsbalance <<endl;
+    cout<< "Checking amount: " << balance <<endl;
+  }
+//display(balance inquiry/account(s) summary)
 }
+void display(){
+     cout << "Account Inquiry for: " << firstname << " " << lastname << endl;
+      cout << "Checking Account summary: " << endl;
+      cout << "Current Balance: $" << balance << endl;
 
+      cout << endl;
 
-
-// open reg checking/savings account
-int i = 0;
-void openaccount() {
-
-
+        cout << "Savings Summary:" << endl;
+        cout << "Current Savings Balance: $" << savingsbalance << endl;
+    //display account summary of both savings/checkings
+      //account inquiry
 }
-
-
-
-
-
+ 
+//main fuction
 int main(){
-std::string moreaccounts;
-	std::string creation;
+    string response;
 
-  std::string input;
-	double depositchoice;
+  do {
+        cout << "Select one of the following. 1.checkings 2.savings 3.deposit 4.transfer. 5.withdrawal. 6. display. 7.exist"<<endl;
+            cin>> response;
 
-  
+      if(response == "checkings" || response == "1"){
+          checking();
+          
+      }else if(response == "savings" || response == "2"){
+          savings();
 
-
-return 0;
+      }else if(response == "deposit" || response == "3"){
+          depo();
+      }else if(response == "transfer" || response == "4"){
+          transfer();
+      }else if(response == "withdrawal" || response == "5"){
+          
+          withdraw();
+      }else if(response == "display" || response == "6"){
+         display();
+      }else if(response == "exit" || response == "7"){
+          break;
+      }
+    
+  }while(true);
+ cout << "Thank you for banking at Manhattan College Banking and Co!" << endl;
+ 
 }
-
-
-
 
